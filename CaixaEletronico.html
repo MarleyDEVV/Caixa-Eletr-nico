@@ -1,0 +1,124 @@
+<html>
+
+<head>
+
+	<script>
+		var saldo = 100.5; //Float
+		var senha = 3589;
+
+		var nomeUsuario = (prompt("Por favor, digite seu nome: "))
+		alert("Seja bem vindo " + nomeUsuario + " é um prazer ter você conosco")
+	
+		function inicio() {
+
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Saldo 2.) Extrato 3.) Saque 4.) Depósito 5.) Transferência 6.) Sair' ));
+
+			switch(escolha){
+				case 1:
+					verif_senha()
+					ver_saldo()
+				case 2:
+					verif_senha()
+					ver_extrato()
+				case 3: 
+					verif_senha()
+					fazer_saque()
+				case 4:
+					fazer_deposito()
+				case 5:
+					fazer_transf()
+				case 6:
+					sair()
+			}
+			
+		}		
+
+		function ver_saldo() {
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		function fazer_deposito() {
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			// Not a Number
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			}else if(deposito <= 0 ){
+				alert("Operação não autorizada.")
+			}
+			else {
+				saldo += deposito;
+				ver_saldo();
+			}
+		}
+
+		function fazer_saque() {
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if(saque > saldo || saque <= 0){
+				alert("Saque não autorizado")
+				fazer_saque()
+			}
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			} else {
+				saldo -= saque;
+				
+				ver_saldo();
+			}
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert(nomeUsuario+ " , foi um prazer ter você por aqui!")
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+		function ver_extrato(){
+			alert("-90.99R$ lojas NIKE" + "\n" + "-200.00R$ PICHAU" + "\n" + "-74.99 R$ RIOT VALORANT")
+			inicio()
+		}
+
+		function fazer_transf(){
+			var transf = parseFloat(prompt('Qual o valor para transferir?'))
+			if(transf > saldo){
+				alert("Operação não autorizada.")
+			}else if(transf = isNaN || transf <= 0){
+				alert("Operação não autorizada.")
+			}
+			else{
+				saldo-=transf
+				ver_saldo()
+				inicio()
+			}
+		}
+
+		function verif_senha(){
+			var confsenha = (prompt("Por favor digite senha para acessar: "))
+			if(confsenha != senha) {
+				alert("senha incorreta, tente novamente")
+				verif_senha()
+			}
+		}
+
+		
+		
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
